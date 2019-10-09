@@ -153,7 +153,7 @@ module Ebfly
       puts "Upload archive #{file_name} to s3://#{s3_bucket}"
       bucket = s3.bucket(s3_bucket)
       obj = bucket.object(file_name)
-      obj.put(body: Pathname.new(file_name).to_s)
+      obj.put(body: File.open(file_name, 'rb'))
     end
 
     def create_application_version(app, version, ish, file_name)
